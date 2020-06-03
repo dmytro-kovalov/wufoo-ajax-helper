@@ -9,4 +9,6 @@ Version: 1.0.1
 
 require_once 'class.Wufoo_Ajax_Helper.php';
 
-$wufoo_ajax_plugin = new Wufoo_Ajax_Helper();
+add_action( 'plugins_loaded', function () {
+	$GLOBALS['wufoo_ajax_plugin'] = new Wufoo_Ajax_Helper();
+} );
