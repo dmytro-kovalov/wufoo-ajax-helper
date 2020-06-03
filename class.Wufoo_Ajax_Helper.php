@@ -167,21 +167,21 @@ class Wufoo_Ajax_Helper {
       wp_die();
     }
 
-    /**
-     * Action hook to add frontend javascript
-     *
-     * @access public
-     * @return void
-     */
-    public function action_wp_enqueue_scripts() {
-      wp_enqueue_script(
-    		'wufoo-ajax-script',
-        plugins_url( 'js/wa_script.js', __FILE__ ) ,
-    		array( 'jquery' ),
-        $this->_version,
-        true
-    	);
-    }
+	/**
+	 * Action hook to add frontend javascript
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function action_wp_enqueue_scripts() {
+		wp_enqueue_script( 'wufoo-ajax-script', plugins_url( 'js/wa_script.js', __FILE__ ), [ 'jquery' ], $this->_version, true );
+		wp_localize_script( 'wufoo-ajax-script', 'wufooAjax', [
+			'ajaxurl' => esc_url( admin_url( 'admin-ajax.php' ) ),
+			'strings' => apply_filters( 'wufoo_ajax_helper_js_strings', [
+				'submitSuccess' => esc_html__( 'Form submitted successfully.', 'wufoo_ajax_helper' ),
+			] ),
+		] );
+	}
 
     /*
     * Function to easily return an index of the hash associated with a label
