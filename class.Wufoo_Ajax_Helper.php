@@ -96,23 +96,22 @@ class Wufoo_Ajax_Helper {
       wp_enqueue_script( 'wa_script_admin', plugins_url( 'js/wa_script_admin.js',  __FILE__ ), false, $this->_version );
     }
 
-    /**
-   * Function to hook menus into the WordPress admin panel.
-	   *
-	   * @access public
-	   * @return void
-	   */
-	  public function action_admin_menu() {
-
-	    /* Add main menu page. */
-	    add_menu_page(
-	      __( 'Wufoo Ajax Settings' ),
-	      __( 'Wufoo Ajax' ),
-	      'activate_plugins',
-	      'wufoo-ajax-settings',
-	      array( $this, 'admin_panel' )
-	    );
-    }
+	/**
+	 * Function to hook menus into the WordPress admin panel.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function action_admin_menu() {
+		add_submenu_page(
+			'options-general.php',
+			__( 'Wufoo Ajax Settings' ),
+			__( 'Wufoo Ajax' ),
+			'activate_plugins',
+			'wufoo-ajax-settings',
+			array( $this, 'admin_panel' )
+		);
+	}
 
     /**
 	 * Function to hook Wufoo Ajax Settings Page into Wordpress Admin Panel
