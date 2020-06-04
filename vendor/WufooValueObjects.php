@@ -211,7 +211,17 @@ class WufooSubmitField {
 	
 	public function getValue() {
 		if ($this->isFile) {
-			return "@$this->value";
+			if ( class_exists( 'CURLFile' ) ) {
+				if ( is_array( $this->value ) ) {
+					// All required info passed in $_FILES
+					return new CURLFile( $this->value['path'], $this->value['mime'], $this->value['name'] );
+				} else {
+					// Detect file mime and filename
+					return new CURLFile( $this->value, mime_content_type( $this->value ), basename( $this->value ) );
+				}
+			} else {
+				return "@$this->value";
+			}
 		} else {
 			return $this->value;
 		}

@@ -12,17 +12,18 @@
       return;
     }
 
-    let data = {
-      action: 'wufoo_post',
-      fields: $(this).serialize(),
-      form_type: formType,
-    };
+    let formData = new FormData(this);
+    formData.append('action', 'wufoo_post');
+    formData.append('form_type', formType);
 
     $.ajax({
       type: 'POST',
       url: wufooAjax.ajaxurl,
-      data: data,
+      data: formData,
       dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
       beforeSend: function(xhr, settings) {
         $responseContainer.insertAfter($form);
         // Remove all .input-error from fields as well as .error-message
