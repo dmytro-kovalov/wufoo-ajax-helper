@@ -43,6 +43,7 @@
         } else {
           $responseContainer.addClass('feedback-success');
           $responseContainer.text(wufooAjax.strings.submitSuccess);
+          $form.trigger('reset');
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
