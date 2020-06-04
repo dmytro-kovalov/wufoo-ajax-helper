@@ -29,7 +29,7 @@ class Wufoo_Ajax_Helper {
 	private $_wufoo_id;
 	private $_hashes;
 	private $_hash_labels;
-	private $_version = '1.0.1';
+	private $_version = '1.1.0';
 
 
 	/**
