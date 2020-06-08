@@ -25,7 +25,6 @@
       contentType: false,
       processData: false,
       beforeSend: function(xhr, settings) {
-        $responseContainer.insertAfter($form);
         // Remove all .input-error from fields as well as .error-message
         $form.find( 'input' ).removeClass( 'input-error' );
         $form.find( '.error-message' ).remove();
@@ -41,6 +40,7 @@
             $form.find('#' + this.ID).addClass('input-error').after($('<span />', {'class': 'error-message', text: this.ErrorText}));
           });
         } else {
+          $responseContainer.insertAfter($form);
           $responseContainer.addClass('feedback-success');
           $responseContainer.text(wufooAjax.strings.submitSuccess);
           $form.trigger('reset');
