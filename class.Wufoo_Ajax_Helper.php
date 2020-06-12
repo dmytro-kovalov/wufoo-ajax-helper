@@ -190,6 +190,7 @@ class Wufoo_Ajax_Helper {
 			'ajaxurl' => esc_url( admin_url( 'admin-ajax.php' ) ),
 			'strings' => apply_filters( 'wufoo_ajax_helper_js_strings', [
 				'submitSuccess' => esc_html__( 'Form submitted successfully.', 'wufoo_ajax_helper' ),
+				'fixErrors'     => esc_html__( 'Please fix the errors:', 'wufoo_ajax_helper' ),
 			] ),
 		] );
 	}
